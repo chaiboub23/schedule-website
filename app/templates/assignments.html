@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assignments</title>
+    <link rel="icon" type="image/x-icon" href="{{url_for('static', filename='favicon.ico')}}"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+        :root {
+            --green: rgb(37, 105, 61);
+            --white: #fff;
+        }
+        body {
+            background-color: var(--green);
+            color: var(--white);
+            font-family: Roboto;
+        }
+        .title {
+            font-size: 40px;
+        }
+        .subtitle {
+            font-size: 25px;
+        }
+        button {
+            background-color: var(--green);
+            text-align: center;
+        }
+        p {
+            font-size: 20px;
+        }
+        .nav {
+            font-size: 25px;
+            color: var(--white);
+        }
+    </style>
+    <script defer>
+        var assignments = {{ assignments | tojson}};        
+        document.write("<button class=\"nav\" onclick=\"document.location='/schedule'\">Schedule</button>");
+        document.write("<button class=\"nav\" onclick=\"document.location='/assignments'\">Assignments</button>");
+        document.write("<button class=\"nav\" onclick=\"document.location='/todo-list'\">Todos</button>")
+        document.write("<p class=\"title\">Assignments</p>");
+        for (element in assignments) {
+            document.write(`<p>${element}`);
+            document.write(" due on ");
+            document.write(`${assignments[element]}</p>`);
+            document.write("<br>");
+            document.write("<br>");
+        };
+    </script>
+</head>
+<body>
+</body>
+</html>

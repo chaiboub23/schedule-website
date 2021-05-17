@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todos</title>
+    <link rel="icon" type="image/x-icon" href="{{url_for('static', filename='favicon.ico')}}"/>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+        :root { 
+            --green: rgb(37, 105, 61);
+            --white: #fff;
+        }   
+        body {
+            background-color: var(--green);
+            color: var(--white);
+            font-family: Roboto;
+        }       
+        .title {
+            font-size: 40px;
+        }       
+        .subtitle {
+            font-size: 25px;
+        }       
+        button {
+            background-color: var(--green);
+            text-align: center;
+        }       
+        p { 
+            font-size: 20px;
+        }       
+        .nav {
+            font-size: 25px;
+            color: var(--white);
+        }
+        button {
+            background-color: var(--green);
+            text-align: center;
+            font-family: Roboto;
+            color: var(--white);
+            font-size: 20px;
+        }
+        input {
+            background-color: rgb(37, 145, 61);
+            color: var(--white);
+            font-size: 20px;
+        }
+        label {
+            font-size: 20px;
+            color: var(--white);
+            font-family: Roboto;
+        }
+    </style>
+    <script defer>
+        document.write("<button class=\"nav\" onclick=\"document.location='/schedule'\">Schedule</button>")
+        document.write("<button class=\"nav\" onclick=\"document.location='/assignments'\">Assignments</button>")
+        document.write("<button class=\"nav\" onclick=\"document.location='/todo-list'\">Todos</button>")
+        document.write("<p class=\"title\">Todos</p>");
+        if (localStorage.getItem("todos") === null){
+            var todos = []
+        }
+        else {
+            var todos = JSON.parse(localStorage.getItem("todos"))
+        }
+        const savetodos = () => {
+            localStorage.setItem("todos", JSON.stringify(todos))
+        }
+        const displaytodos = () => {
+            $('.todo').remove()
+            $('.todo-break').remove()
+            $('#create').remove()
+            $('#remove').remove()
+            $('#todo-input').remove()
+            $('#todo-label-input').remove()
+            todos.forEach(t => {
+                document.body.innerHTML += `<p class="todo">${t}</p>` + "<br class=\"todo-break\">"
+            })
+            document.body.innerHTML += "<label id=\"todo-label-input\">Input todo</label>" + "<input id=\"todo-input\"type=\"text\">" + "<button id=\"create\">Create a new todo</button>" + "<button id=\"remove\">Remove a todo</button>"
+        }
+        displaytodos()
+    </script>
+    <script defer>
+        $("#create").on("click", () => {
+            var value = $("input").val()
+            todos.push(value)
+            $("input").val("")
+            savetodos()
+            displaytodos()
+            location.reload()
+            console.log("created new todo wow")
+        })
+        $("#remove").on("click", () => {
+            var value = $("input").val()
+            todos.map(x => {
+                if (x == value) {
+                    todos.splice(todos.indexOf(x), 1)
+                }
+            })
+            savetodos()
+            displaytodos()
+            $("input").val("")
+            location.reload()
+            console.log("removed todo wow")
+        })
+    </script>
+</head>
+<body>
+</body>
+</html>

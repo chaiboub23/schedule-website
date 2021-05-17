@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>RNS Portal 2.0</title>
+        <link rel="icon" type="image/x-icon" href="{{url_for('static', filename='favicon.ico')}}"/>
+        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+            :root {
+                --green: rgb(37, 105, 61);
+                --white: #fff;
+            }
+            body {
+                background-color: var(--green);
+                color: var(--white);
+                font-family: Roboto;
+            }
+            .title {
+                font-size: 40px;
+            }
+            .subtitle {
+                font-size: 25px;
+            }
+            button {
+                background-color: var(--green);
+                text-align: center;
+            }
+            a {
+                color: var(--white);
+                text-decoration: none;
+                font-family: Roboto;
+            }
+            input {
+                background-color: var(--white);
+                color: var(--white);
+            }
+            img {
+                height: 50%;
+                width: 50%;
+            }
+        </style>
+    </head>
+    <body>
+        <a title="RNS website" href="https://www.rns.cc"><img src="{{url_for('static', filename='rothesay_logo_one_line.png')}}"></a>
+        <p class="title">RNS Portal 2.0</p>
+        <label>Enter URL here</label>
+        <input type="text">
+        <button><a href="/schedule">Submit</a></button>
+        <p>By using this website, you agree to using cookies.</p>
+        <p class="subtitle">How this site works</p>
+        <p>This site uses a Webcal link from your RNS Portal and stores this link into a cookie. This cookie is then fetched by the Flask server and Python is used get the iCalendar data from the Webcal url. This is then parsed and converted into a Python list containing your schedule for the day and a Python dictionary containing your assignments.</p>
+        <p class="subtitle">Help</p>
+        <p>To get the url, login to the RNS Portal</p>
+        <img src="{{url_for('static', filename='step-one.png')}}">
+        <p>Then go to the Calendar section</p>
+        <img src="{{url_for('static', filename='step-two.png')}}">
+        <p>Click on the symbol that looks like the WiFi symbol</p>
+        <img src="{{url_for('static', filename='step-three.png')}}">
+        <p>Right click on 'My Calendars' and copy the link</p>
+        <img src="{{url_for('static', filename='step-four.png')}}">
+        <p>Paste this link into the text box above</p>
+        <script>
+            $("button").on("click", () => {
+                var value = $("input").val();
+                document.cookie = `text=${value}; expires=Wed, 01 Jan 2200 12:00:00 UTC;`;
+                $("input").val("");
+            })
+        </script>
+    </body>
+</html>
+
