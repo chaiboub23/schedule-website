@@ -8,7 +8,7 @@ To read the date of the log, the file name contains 6 digits:
 * The second two digits are the month
 * The final two digits are the year
 
-For example, 080421.md is file written on April 8th, 2021.
+For example, `080421.md` is file written on April 8th, 2021.
 
 Each log has an intro and an exit.
 
