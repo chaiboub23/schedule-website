@@ -1,6 +1,6 @@
 # App
 
-This folder contains the code for the app, which is hosted on Heroku [here(https://rnsportalv2.herokuapp.com/ "Website").
+This folder contains the code for the app, which is hosted on Heroku [here](https://rnsportalv2.herokuapp.com/ "Website").
 
 To run locally you need to clone this repository.
 
